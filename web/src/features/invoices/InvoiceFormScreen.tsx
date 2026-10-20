@@ -464,17 +464,9 @@ export function InvoiceFormScreen() {
     <div className="page page--no-tabs">
       <NavBar
         title={editId ? t('invoice.form.title.edit') : t('invoice.form.title.new')}
-        left={
-          <button onClick={handleBack} style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16 }}>
-            {t('common.back')}
-          </button>
-        }
+        left={<button onClick={handleBack}>{t('common.back')}</button>}
         right={
-          <button
-            onClick={() => handleSave(false)}
-            disabled={saving}
-            style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16, fontWeight: 600 }}
-          >
+          <button onClick={() => handleSave(false)} disabled={saving}>
             {t('invoice.form.save')}
           </button>
         }

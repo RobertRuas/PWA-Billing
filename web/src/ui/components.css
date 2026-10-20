@@ -44,6 +44,26 @@
   font-weight: 600;
 }
 
+.nav-bar-btn button,
+.nav-bar-btn a {
+  height: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  font-size: 14px;
+  color: var(--blue);
+}
+
+.nav-bar-btn--bold button {
+  font-weight: 600;
+}
+
+.nav-bar-btn button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 /* Large title */
 .large-title {
   font-size: 26px;
@@ -225,16 +245,28 @@
   border: none;
   outline: none;
   text-align: right;
-  padding: 0;
+  padding: 8px 0;
   min-width: 0;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .form-row textarea {
   text-align: left;
   resize: none;
   min-height: 60px;
-  padding: 8px 0;
+}
+
+.form-row input::placeholder,
+.form-row textarea::placeholder {
+  color: var(--label3);
+}
+
+.form-row input:-webkit-autofill,
+.form-row input:-webkit-autofill:hover,
+.form-row input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--label);
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg2) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-row-error {

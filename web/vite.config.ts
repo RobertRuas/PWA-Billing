@@ -2,8 +2,10 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const base = process.env.VITE_BASE || '/'
+
 export default defineConfig({
-  base: process.env.VITE_BASE || '/',
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -17,8 +19,8 @@ export default defineConfig({
       manifest: {
         name: 'Billing',
         short_name: 'Billing',
-        start_url: '.',
-        scope: '.',
+        start_url: base,
+        scope: base,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#f2f2f7',
