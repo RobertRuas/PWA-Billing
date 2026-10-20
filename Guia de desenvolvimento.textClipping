@@ -1,0 +1,576 @@
+bplist00ÑXUTI-DataÑZpublic.rtf_r€{\rtf1\ansi\ansicpg1252\cocoartf2908
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 .SFNS-Regular_wdth_opsz140000_GRAD_wght2580000;
+\f3\fnil\fcharset0 .SFNS-Regular_wdth_opsz110000_GRAD_wght2580000;\f4\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red22\green22\blue24;\red115\green115\blue120;\red223\green223\blue225;
+\red242\green242\blue245;\red255\green255\blue255;\red10\green88\blue220;\red119\green76\blue2;\red255\green246\blue236;
+\red23\green59\blue118;\red236\green245\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c11373\c11373\c12157;\cssrgb\c52549\c52549\c54510;\cssrgb\c89804\c89804\c90588;
+\cssrgb\c96078\c96078\c96863;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c44314\c89020;\cssrgb\c54510\c36863\c0;\cssrgb\c100000\c97255\c94118;
+\cssrgb\c11373\c30588\c53725;\cssrgb\c94118\c96863\c100000;}
+\deftab720
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\b\fs64 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Guia de desenvolvimento\
+\pard\pardeftab720\sa960\partightenfactor0
+
+\f1\b0\fs33\fsmilli16800 \cf3 \strokec3 Como criar e publicar uma PWA em 
+\f0\b pwa.windlog.org
+\f1\b0  usando PocketBase como backend.\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\b\fs40 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \strokec2 Arquitetura\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \AppleTypeServices \cf2 Cada aplica\'e7\'e3o vive numa subpasta e partilha um \'fanico backend PocketBase.\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4485\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth9115\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3\b\fs25\fsmilli12800 \AppleTypeServices\AppleTypeServicesF65539 \cf3 \strokec3 URL\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\AppleTypeServices\AppleTypeServicesF65539 \cf3 DESTINO\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4485\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth9115\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\b0\fs24\fsmilli12240 \AppleTypeServices \cf2 \cb5 \strokec2 /app/
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Ficheiros est\'e1ticos da app\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4485\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth9115\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 /api/...
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 PocketBase REST API\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4485\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth9115\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 /_/
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 PocketBase Admin UI\cell \lastrow\row
+\pard\pardeftab720\sa280\partightenfactor0
+
+\fs30 \cf2 O Nginx serve os ficheiros est\'e1ticos e faz proxy transparente para o PocketBase. Apps dentro de 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /app/
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  recebem SPA fallback autom\'e1tico \'97 qualquer rota que n\'e3o corresponda a um ficheiro devolve 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /app/index.html
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 .\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\b\fs40 \AppleTypeServices\AppleTypeServicesF65539 \cf2 Criar uma app\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \AppleTypeServices \cf6 \cb7 \strokec6 1
+\f1\b0\fs30 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b \cf2 Criar o espa\'e7o
+\f1\b0  (SSH no contentor PWA)\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 pwa-app add minha-app\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs30 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Cria a pasta 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /var/www/pwa/minha-app/
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  com um placeholder.\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf6 \cb7 \strokec6 2
+\f1\b0\fs30 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b \cf2 Desenvolver a app localmente
+\f1\b0 \
+Use o framework que preferir (React, Vue, Svelte, vanilla). Configure o 
+\f0\b base path
+\f1\b0  para 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /minha-app/
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 .\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb6 Exemplo \'97 Vite\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b0\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 // vite.config.ts\
+export default defineConfig(\{\
+  base: '/minha-app/',\
+  // ...\
+\})\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs24 \cf6 \cb7 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 3
+\f1\b0\fs30 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b \cf2 Publicar
+\f1\b0  \'97 copiar o build para o servidor\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 # De fora do contentor (via Proxmox host)\
+scp -r ./dist/* root@192.168.1.231:/var/www/pwa/minha-app/\
+\
+# Ou via pct push (do Proxmox host)\
+tar czf /tmp/app.tar.gz -C dist .\
+pct push 204 /tmp/app.tar.gz /tmp/app.tar.gz\
+pct exec 204 -- bash -c 'cd /var/www/pwa/minha-app && tar xzf /tmp/app.tar.gz && chown -R www-data:www-data .'\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs30 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 A app fica dispon\'edvel em 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 https://pwa.windlog.org/minha-app/
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\b\fs40 \AppleTypeServices\AppleTypeServicesF65539 \cf2 PocketBase \'97 Backend\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \AppleTypeServices \cf2 O PocketBase corre localmente na porta 8090. O Nginx faz proxy em 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /api/
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , portanto nas apps use caminhos relativos \'e0 raiz.\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 Conectar ao PocketBase\
+\pard\pardeftab720\partightenfactor0
+
+\f4\b0\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 import PocketBase from 'pocketbase';\
+\
+// Usar '/' como base \'97 as chamadas v\'e3o para /api/...\
+const pb = new PocketBase('/');\
+pb.autoCancellation(false);\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs28\fsmilli14400 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Nunca use 
+\f4\fs25\fsmilli12672 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 new PocketBase('')
+\f1\fs28\fsmilli14400 \cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  (string vazia). Isso faz as chamadas serem relativas ao path da app (
+\f4\fs25\fsmilli12672 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /minha-app/api/...
+\f1\fs28\fsmilli14400 \cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ) em vez de ir para 
+\f4\fs25\fsmilli12672 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /api/...
+\f1\fs28\fsmilli14400 \cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 .\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \strokec2 Collections\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \cf2 Crie as collections no {\field{\*\fldinst{HYPERLINK "https://pwa.windlog.org/_/"}}{\fldrslt \cf7 \strokec7 Admin UI}} ou via API. Prefixe o nome com o nome da app para evitar conflitos:\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 minha-app_tarefas\
+minha-app_notas\
+minha-app_perfis\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Autentica\'e7\'e3o\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \cf2 O PocketBase tem a collection 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 users
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  integrada. Todas as apps partilham os mesmos utilizadores.\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 // Registar\
+await pb.collection('users').create(\{\
+  email: 'user@exemplo.com',\
+  password: 'minhasenha00',\
+  passwordConfirm: 'minhasenha00',\
+  name: 'Nome',\
+\});\
+\
+// Login\
+await pb.collection('users').authWithPassword(\
+  'user@exemplo.com',\
+  'minhasenha00'\
+);\
+\
+// Verificar sess\'e3o\
+if (pb.authStore.isValid) \{\
+  const user = pb.authStore.record;\
+\}\
+\
+// Logout\
+pb.authStore.clear();\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs28\fsmilli14400 \cf10 \cb11 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec10 Senha m\'ednima do PocketBase: 8 caracteres. O token de autentica\'e7\'e3o \'e9 guardado automaticamente no localStorage pelo SDK.\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \strokec2 CRUD\
+\pard\pardeftab720\partightenfactor0
+
+\f4\b0\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 // Criar\
+const record = await pb.collection('app_items').create(\{\
+  titulo: 'Tarefa 1',\
+  feito: false,\
+  user: pb.authStore.record.id,\
+\});\
+\
+// Listar (com filtro)\
+const list = await pb.collection('app_items').getFullList(\{\
+  filter: `user = "$\{pb.authStore.record.id\}"`,\
+  sort: '-created',\
+\});\
+\
+// Atualizar\
+await pb.collection('app_items').update(record.id, \{\
+  feito: true,\
+\});\
+\
+// Apagar\
+await pb.collection('app_items').delete(record.id);\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Realtime\
+\pard\pardeftab720\partightenfactor0
+
+\f4\b0\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 // Subscrever a altera\'e7\'f5es\
+pb.collection('app_items').subscribe('*', (e) => \{\
+  console.log(e.action, e.record);\
+  // e.action: 'create' | 'update' | 'delete'\
+\});\
+\
+// Cancelar subscri\'e7\'e3o\
+pb.collection('app_items').unsubscribe();\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Ficheiros\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \cf2 Para collections com campos do tipo 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 file
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 :\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 // Upload\
+const formData = new FormData();\
+formData.append('imagem', fileInput.files[0]);\
+formData.append('titulo', 'Foto');\
+const record = await pb.collection('app_fotos').create(formData);\
+\
+// URL do ficheiro\
+const url = pb.files.getURL(record, record.imagem);\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Regras de acesso\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \cf2 Configure no Admin UI em cada collection. Exemplo para que cada utilizador veja apenas os seus dados:\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5240\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8360\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3\b\fs25\fsmilli12800 \AppleTypeServices\AppleTypeServicesF65539 \cf3 \strokec3 REGRA\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\AppleTypeServices\AppleTypeServicesF65539 \cf3 VALOR\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5240\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8360\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0\fs28\fsmilli14400 \AppleTypeServices \cf2 \strokec2 List / View\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 user = @request.auth.id
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5240\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8360\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Create\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 @request.auth.id != ""
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5240\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8360\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Update / Delete\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 user = @request.auth.id
+\f1\fs28\fsmilli14400 \cb1 \cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\b\fs40 \AppleTypeServices\AppleTypeServicesF65539 \cf2 Requisitos da PWA\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\fs32 \AppleTypeServices \cf2 manifest.webmanifest\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \cf2 O 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 start_url
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  e 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 scope
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  devem apontar para a subpasta da app:\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \{\
+  "name": "Minha App",\
+  "short_name": "App",\
+  "start_url": "/minha-app/",\
+  "scope": "/minha-app/",\
+  "display": "standalone",\
+  "background_color": "#fafafa",\
+  "theme_color": "#0071e3",\
+  "icons": [\
+    \{ "src": "/minha-app/icons/icon-192.png", "sizes": "192x192", "type": "image/png" \},\
+    \{ "src": "/minha-app/icons/icon-512.png", "sizes": "512x512", "type": "image/png" \}\
+  ]\
+\}\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Service Worker\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\b0\fs30 \cf2 Se usar um SW, configure o scope e o 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 navigateFallback
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  para a subpasta. Exclua 
+\f4\fs26\fsmilli13200 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /api/
+\f1\fs30 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  do fallback:\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 // vite-plugin-pwa (exemplo)\
+VitePWA(\{\
+  registerType: 'autoUpdate',\
+  workbox: \{\
+    navigateFallback: '/minha-app/index.html',\
+    navigateFallbackDenylist: [/^\\/api\\//],\
+    skipWaiting: true,\
+    clientsClaim: true,\
+  \},\
+\})\
+\pard\pardeftab720\sa200\partightenfactor0
+
+\f3\b\fs32 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Caminhos internos\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs28\fsmilli14400 \cf8 \cb9 \strokec8 Todos os caminhos de assets (imagens, scripts, CSS) devem incluir o prefixo da app ou usar 
+\f4\fs25\fsmilli12672 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 import.meta.env.BASE_URL
+\f1\fs28\fsmilli14400 \cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . Caminhos como 
+\f4\fs25\fsmilli12672 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 /icons/logo.svg
+\f1\fs28\fsmilli14400 \cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  v\'e3o para a raiz do site, n\'e3o para a app.\
+\pard\pardeftab720\partightenfactor0
+
+\f4\fs27\fsmilli13600 \cf2 \cb6 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 // Correto\
+<img src=\{`$\{import.meta.env.BASE_URL\}icons/logo.svg`\} />\
+\
+// Incorreto\
+<img src="/icons/logo.svg" />\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\b\fs40 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Gest\'e3o\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6658\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth6942\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3\fs25\fsmilli12800 \AppleTypeServices\AppleTypeServicesF65539 \cf3 \strokec3 COMANDO\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\AppleTypeServices\AppleTypeServicesF65539 \cf3 DESCRI\'c7\'c3O\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6658\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth6942\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\b0\fs24\fsmilli12240 \AppleTypeServices \cf2 \cb5 \strokec2 pwa-app add nome
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Criar app\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6658\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth6942\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 pwa-app remove nome
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Remover app e ficheiros\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6658\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth6942\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 pwa-app list
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Listar apps\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6658\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth6942\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 pwa-app info nome
+\f1\fs28\fsmilli14400 \cb1 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Detalhes de uma app\cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\b\fs40 \AppleTypeServices\AppleTypeServicesF65539 \cf2 Refer\'eancia r\'e1pida\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f3\fs25\fsmilli12800 \AppleTypeServices\AppleTypeServicesF65539 \cf3 \strokec3 ITEM\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\AppleTypeServices\AppleTypeServicesF65539 \cf3 VALOR\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0\fs28\fsmilli14400 \AppleTypeServices \cf2 \strokec2 Dashboard\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 https://pwa.windlog.org/
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Admin PocketBase\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 https://pwa.windlog.org/_/
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 API PocketBase\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 https://pwa.windlog.org/api/
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Docs PocketBase\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://pocketbase.io/docs/"}}{\fldrslt \cf7 \strokec7 pocketbase.io/docs}}\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 SDK JS\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 npm install pocketbase
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Contentor\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 ID 204 \'b7 IP 192.168.1.231\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Ficheiros\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 /var/www/pwa/
+\f1\fs28\fsmilli14400 \cb1 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart320 \tamarb320 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth5192\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth8407\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrnil \clpadt200 \clpadl280 \clpadb200 \clpadr280 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 Dados PocketBase\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f4\fs24\fsmilli12240 \cf2 \cb5 /opt/pocketbase/pb_data/
+\f1\fs28\fsmilli14400 \cb1 \cell \lastrow\row
+}     "                           r¦

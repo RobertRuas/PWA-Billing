@@ -1,0 +1,16 @@
+[Unit]
+Description=PocketBase
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/opt/pocketbase/pocketbase serve --http=127.0.0.1:8090
+WorkingDirectory=/opt/pocketbase
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/pocketbase.log
+StandardError=append:/var/log/pocketbase.log
+
+[Install]
+WantedBy=multi-user.target
