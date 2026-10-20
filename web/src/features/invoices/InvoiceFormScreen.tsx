@@ -37,7 +37,7 @@ export function InvoiceFormScreen() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const params = new URLSearchParams(route.path.split('?')[1] || '')
-  const editId = route.path.match(/^\/faturas\/([a-z0-9]{15})\/editar$/)?.[1]
+  const editId = route.path.match(/^\/faturas\/([a-z0-9]+)\/editar$/)?.[1]
   const initialType = (params.get('tipo') as 'hours' | 'expenses') || 'hours'
 
   const [type, setType] = useState<'hours' | 'expenses'>(initialType)
@@ -465,7 +465,7 @@ export function InvoiceFormScreen() {
       <NavBar
         title={editId ? t('invoice.form.title.edit') : t('invoice.form.title.new')}
         left={
-          <button onClick={handleBack} style={{ background: 'none', border: 'none', color: 'var(--tint)', fontSize: 16 }}>
+          <button onClick={handleBack} style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16 }}>
             {t('common.back')}
           </button>
         }
@@ -473,7 +473,7 @@ export function InvoiceFormScreen() {
           <button
             onClick={() => handleSave(false)}
             disabled={saving}
-            style={{ background: 'none', border: 'none', color: 'var(--tint)', fontSize: 16, fontWeight: 600 }}
+            style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16, fontWeight: 600 }}
           >
             {t('invoice.form.save')}
           </button>
@@ -666,7 +666,7 @@ export function InvoiceFormScreen() {
               </button>
             </div>
           ))}
-          <button className="list-row" onClick={handleAttachment} style={{ color: 'var(--tint)' }}>
+          <button className="list-row" onClick={handleAttachment} style={{ color: 'var(--blue)' }}>
             + {t('invoice.form.addAttachment')}
           </button>
         </div>

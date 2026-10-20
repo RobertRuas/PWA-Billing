@@ -68,9 +68,9 @@ export function OnboardingScreen({ onComplete }: Props) {
     const profile = await db.mm_profiles.filter((p) => p.owner === user.id).first()
     if (profile) {
       await localUpdate('mm_profiles', profile.id, {
-        iban_name: ibanName,
-        iban: normalizeIBAN(iban),
-        swift: swift.replace(/\s+/g, '').toUpperCase(),
+        bank_iban_name: ibanName,
+        bank_iban: normalizeIBAN(iban),
+        bank_swift: swift.replace(/\s+/g, '').toUpperCase(),
       })
     }
     setStep(3)
@@ -94,9 +94,8 @@ export function OnboardingScreen({ onComplete }: Props) {
             name: projectName,
             client: clientId,
             role: projectRole,
-            hourly_rate: rateInCents,
-            perdiem: perdiemInCents,
-            active: true,
+            hourly_rate_cents: rateInCents,
+            perdiem_cents: perdiemInCents,
           }, user.id)
         }
       }
@@ -146,7 +145,7 @@ export function OnboardingScreen({ onComplete }: Props) {
 
       <div style={{ padding: '0 16px' }}>
         <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 4 }}>{stepTitles[step - 1]}</h2>
-        <p style={{ color: 'var(--secondary-label)', fontSize: 14, marginBottom: 24 }}>{stepSubtitles[step - 1]}</p>
+        <p style={{ color: 'var(--label2)', fontSize: 14, marginBottom: 24 }}>{stepSubtitles[step - 1]}</p>
 
         {/* Step indicators */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 24 }}>
@@ -157,94 +156,98 @@ export function OnboardingScreen({ onComplete }: Props) {
                 flex: 1,
                 height: 3,
                 borderRadius: 1.5,
-                background: s <= step ? 'var(--blue)' : 'var(--separator)',
+                background: s <= step ? 'var(--blue)' : 'var(--sep)',
               }}
             />
           ))}
         </div>
 
         {step === 1 && (
-          <>
+          <div className="list-group" style={{ margin: 0 }}>
             <div className="form-row">
-              <label className="form-label">{t('settings.account.name')}</label>
-              <input className="form-input" value={techName} onChange={(e) => setTechName(e.target.value)} />
+              <label>{t('settings.technician.name')}</label>
+              <input value={techName} onChange={(e) => setTechName(e.target.value)} />
             </div>
             <div className="form-row">
-              <label className="form-label">Empresa</label>
-              <input className="form-input" value={techCompany} onChange={(e) => setTechCompany(e.target.value)} />
+              <label>{t('settings.technician.company')}</label>
+              <input value={techCompany} onChange={(e) => setTechCompany(e.target.value)} />
             </div>
             <div className="form-row">
-              <label className="form-label">{t('auth.login.email')}</label>
-              <input className="form-input" type="email" value={techEmail} onChange={(e) => setTechEmail(e.target.value)} placeholder={user?.email} />
+              <label>{t('settings.technician.email')}</label>
+              <input type="email" value={techEmail} onChange={(e) => setTechEmail(e.target.value)} placeholder={user?.email} />
             </div>
             <div className="form-row">
-              <label className="form-label">Morada</label>
-              <textarea className="form-input" rows={2} value={techAddress} onChange={(e) => setTechAddress(e.target.value)} />
+              <label>{t('settings.technician.address')}</label>
+              <textarea rows={2} value={techAddress} onChange={(e) => setTechAddress(e.target.value)} />
             </div>
             <div className="form-row">
-              <label className="form-label">NIF / VAT</label>
-              <input className="form-input" value={techVat} onChange={(e) => setTechVat(e.target.value)} />
+              <label>{t('settings.technician.vat')}</label>
+              <input value={techVat} onChange={(e) => setTechVat(e.target.value)} />
             </div>
             <div className="form-row">
-              <label className="form-label">Telefone</label>
-              <input className="form-input" type="tel" value={techTel} onChange={(e) => setTechTel(e.target.value)} />
+              <label>{t('settings.technician.tel')}</label>
+              <input type="tel" value={techTel} onChange={(e) => setTechTel(e.target.value)} />
             </div>
-          </>
+          </div>
         )}
 
         {step === 2 && (
-          <>
+          <div className="list-group" style={{ margin: 0 }}>
             <div className="form-row">
-              <label className="form-label">Titular</label>
-              <input className="form-input" value={ibanName} onChange={(e) => setIbanName(e.target.value)} />
+              <label>{t('settings.bank.ibanName')}</label>
+              <input value={ibanName} onChange={(e) => setIbanName(e.target.value)} />
             </div>
             <div className="form-row">
-              <label className="form-label">IBAN</label>
-              <input className="form-input" value={iban} onChange={(e) => setIban(e.target.value)} placeholder="PT50 0000 0000 0000 0000 0000 0" />
+              <label>{t('settings.bank.iban')}</label>
+              <input value={iban} onChange={(e) => setIban(e.target.value)} placeholder="PT50 0000 0000 0000 0000 0000 0" />
             </div>
             <div className="form-row">
-              <label className="form-label">SWIFT / BIC</label>
-              <input className="form-input" value={swift} onChange={(e) => setSwift(e.target.value)} placeholder="XXXXXXXX" />
+              <label>{t('settings.bank.swift')}</label>
+              <input value={swift} onChange={(e) => setSwift(e.target.value)} placeholder="XXXXXXXX" />
             </div>
-          </>
+          </div>
         )}
 
         {step === 3 && (
           <>
-            <div className="list-group-header" style={{ marginTop: 0 }}>{t('settings.clients')}</div>
-            <div className="form-row">
-              <label className="form-label">{t('settings.account.name')}</label>
-              <input className="form-input" value={clientName} onChange={(e) => setClientName(e.target.value)} />
-            </div>
-            <div className="form-row">
-              <label className="form-label">Morada</label>
-              <textarea className="form-input" rows={2} value={clientAddress} onChange={(e) => setClientAddress(e.target.value)} />
-            </div>
-            <div className="form-row">
-              <label className="form-label">NIF / VAT</label>
-              <input className="form-input" value={clientVat} onChange={(e) => setClientVat(e.target.value)} />
-            </div>
-            <div className="form-row">
-              <label className="form-label">{t('auth.login.email')}</label>
-              <input className="form-input" type="email" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} />
+            <div className="list-group-header" style={{ marginTop: 0 }}>{t('settings.clients.title')}</div>
+            <div className="list-group">
+              <div className="form-row">
+                <label>{t('settings.client.name')}</label>
+                <input value={clientName} onChange={(e) => setClientName(e.target.value)} />
+              </div>
+              <div className="form-row">
+                <label>{t('settings.client.address')}</label>
+                <textarea rows={2} value={clientAddress} onChange={(e) => setClientAddress(e.target.value)} />
+              </div>
+              <div className="form-row">
+                <label>{t('settings.client.vat')}</label>
+                <input value={clientVat} onChange={(e) => setClientVat(e.target.value)} />
+              </div>
+              <div className="form-row">
+                <label>{t('settings.client.email')}</label>
+                <input type="email" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} />
+              </div>
             </div>
 
-            <div className="list-group-header">{t('settings.projects')}</div>
-            <div className="form-row">
-              <label className="form-label">{t('settings.account.name')}</label>
-              <input className="form-input" value={projectName} onChange={(e) => setProjectName(e.target.value)} />
-            </div>
-            <div className="form-row">
-              <label className="form-label">Função</label>
-              <input className="form-input" value={projectRole} onChange={(e) => setProjectRole(e.target.value)} />
-            </div>
-            <div className="form-row">
-              <label className="form-label">{t('settings.billing.hourlyRate')}</label>
-              <input className="form-input" type="number" inputMode="decimal" step="0.01" value={hourlyRate} onChange={(e) => setHourlyRate(e.target.value)} />
-            </div>
-            <div className="form-row">
-              <label className="form-label">Per diem</label>
-              <input className="form-input" type="number" inputMode="decimal" step="0.01" value={perdiem} onChange={(e) => setPerdiem(e.target.value)} />
+            <div className="list-group-header">{t('settings.projects.title')}</div>
+            <div className="list-group">
+              <div className="form-row">
+                <label>{t('settings.project.name')}</label>
+                <input value={projectName} onChange={(e) => setProjectName(e.target.value)} />
+              </div>
+              <div className="form-row">
+                <label>{t('settings.project.role')}</label>
+                <input value={projectRole} onChange={(e) => setProjectRole(e.target.value)} />
+              </div>
+              <div className="form-row">
+                <label>{t('settings.billing.hourlyRate')}</label>
+                <input type="number" inputMode="decimal" step="0.01" value={hourlyRate} onChange={(e) => setHourlyRate(e.target.value)} />
+              </div>
+              <div className="form-row">
+                <label>{t('settings.billing.perdiem')}</label>
+                <input type="number" inputMode="decimal" step="0.01" value={perdiem} onChange={(e) => setPerdiem(e.target.value)} />
+              </div>
             </div>
           </>
         )}

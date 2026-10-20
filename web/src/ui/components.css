@@ -237,6 +237,14 @@
   padding: 8px 0;
 }
 
+.form-row-error {
+  font-size: 11px;
+  color: var(--red);
+  width: 100%;
+  text-align: right;
+  margin-top: 2px;
+}
+
 /* Segmented Control */
 .segmented {
   display: flex;

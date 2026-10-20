@@ -218,7 +218,7 @@ export function InvoiceDetailScreen() {
   if (!invoice) {
     return (
       <div className="page page--no-tabs">
-        <NavBar title={t('invoice.detail.title')} left={<button onClick={() => nav.pop()} style={{ background: 'none', border: 'none', color: 'var(--tint)', fontSize: 16 }}>{t('common.back')}</button>} />
+        <NavBar title={t('invoice.detail.title')} left={<button onClick={() => nav.pop()} style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16 }}>{t('common.back')}</button>} />
         <div style={{ display: 'flex', justifyContent: 'center', padding: 40 }}>
           <div className="skeleton" style={{ width: 40, height: 40, borderRadius: 20 }} />
         </div>
@@ -265,12 +265,12 @@ export function InvoiceDetailScreen() {
       <NavBar
         title={t('invoice.detail.title')}
         left={
-          <button onClick={() => nav.pop()} style={{ background: 'none', border: 'none', color: 'var(--tint)', fontSize: 16 }}>
+          <button onClick={() => nav.pop()} style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16 }}>
             {t('common.back')}
           </button>
         }
         right={
-          <button onClick={() => setShowActions(true)} style={{ background: 'none', border: 'none', color: 'var(--tint)', fontSize: 16 }}>
+          <button onClick={() => setShowActions(true)} style={{ background: 'none', border: 'none', color: 'var(--blue)', fontSize: 16 }}>
             •••
           </button>
         }

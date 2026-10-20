@@ -111,7 +111,7 @@ export function InstallSheet({ open, onClose }: Props) {
         )}
 
         {isIOSNonSafari() && (
-          <p style={{ fontSize: 14, color: 'var(--secondary-label)', textAlign: 'center' }}>
+          <p style={{ fontSize: 14, color: 'var(--label2)', textAlign: 'center' }}>
             {t('install.ios.notSafari')}
           </p>
         )}
@@ -127,7 +127,7 @@ export function InstallSheet({ open, onClose }: Props) {
         )}
 
         {!isIOSSafari() && !isIOSNonSafari() && !showAndroidInstall && (
-          <p style={{ fontSize: 14, color: 'var(--secondary-label)', textAlign: 'center' }}>
+          <p style={{ fontSize: 14, color: 'var(--label2)', textAlign: 'center' }}>
             {t('install.ios.step2')}
           </p>
         )}

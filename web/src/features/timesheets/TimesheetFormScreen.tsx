@@ -19,7 +19,7 @@ export function TimesheetFormScreen() {
   const nav = useNav()
   const route = useRoute()
 
-  const editId = route.params?.id
+  const editId = route.path.match(/^\/timesheets\/([a-z0-9]+)\/editar$/)?.[1]
 
   const profile = useLiveQuery(
     () => (user ? db.mm_profiles.where('owner').equals(user.id).first() : undefined),
@@ -225,21 +225,16 @@ export function TimesheetFormScreen() {
       />
 
       <div style={{ padding: '0 16px' }}>
-        <div className="form-row">
-          <label className="form-row-label">{t('timesheet.form.project')}</label>
-          <select
-            value={projectId}
-            onChange={(e) => setProjectId(e.target.value)}
-            className="form-row-input"
-            disabled={!!editId}
-          >
-            <option value="">—</option>
-            {(projects ?? []).map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name as string}
-              </option>
-            ))}
-          </select>
+        <div className="list-group" style={{ margin: 0 }}>
+          <div className="form-row">
+            <label>{t('timesheet.form.project')}</label>
+            <select value={projectId} onChange={(e) => setProjectId(e.target.value)} disabled={!!editId}>
+              <option value="">—</option>
+              {(projects ?? []).map((p) => (
+                <option key={p.id} value={p.id}>{p.name as string}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div
@@ -271,11 +266,11 @@ export function TimesheetFormScreen() {
           <div
             style={{
               padding: '8px 12px',
-              background: 'var(--color-fill-tertiary)',
+              background: 'var(--fill)',
               borderRadius: 8,
               marginBottom: 12,
               fontSize: 14,
-              color: 'var(--color-secondary-label)',
+              color: 'var(--label2)',
             }}
           >
             {t('timesheet.form.existsWarning')}
@@ -294,7 +289,7 @@ export function TimesheetFormScreen() {
                   width: 32,
                   fontWeight: 600,
                   fontSize: 13,
-                  color: 'var(--color-secondary-label)',
+                  color: 'var(--label2)',
                 }}
               >
                 {t(`day.${dayKeys[i]}`)}
@@ -319,12 +314,12 @@ export function TimesheetFormScreen() {
                   textAlign: 'right',
                   fontSize: 16,
                   padding: '6px 8px',
-                  border: '1px solid var(--color-separator)',
+                  border: '1px solid var(--sep)',
                   borderRadius: 8,
-                  background: 'var(--color-fill-tertiary)',
+                  background: 'var(--fill)',
                 }}
               />
-              <span style={{ fontSize: 13, color: 'var(--color-secondary-label)' }}>h</span>
+              <span style={{ fontSize: 13, color: 'var(--label2)' }}>h</span>
               <input
                 type="text"
                 placeholder="—"
@@ -334,9 +329,9 @@ export function TimesheetFormScreen() {
                   flex: 1,
                   fontSize: 14,
                   padding: '6px 8px',
-                  border: '1px solid var(--color-separator)',
+                  border: '1px solid var(--sep)',
                   borderRadius: 8,
-                  background: 'var(--color-fill-tertiary)',
+                  background: 'var(--fill)',
                   minWidth: 0,
                 }}
                 maxLength={300}
@@ -358,29 +353,18 @@ export function TimesheetFormScreen() {
           <span>{totalHours % 1 === 0 ? totalHours : totalHours.toFixed(1)}h</span>
         </div>
 
-        <div className="form-row" style={{ marginBottom: 12 }}>
-          <label className="form-row-label">{t('timesheet.form.notes')}</label>
-          <textarea
-            value={tsNotes}
-            onChange={(e) => setTsNotes(e.target.value)}
-            className="form-row-input"
-            rows={3}
-            maxLength={1000}
-            style={{ fontSize: 16, padding: '8px 12px', borderRadius: 8 }}
-          />
-        </div>
-
-        {editId && (
-          <div className="form-row" style={{ marginBottom: 12 }}>
-            <label className="form-row-label">{t('timesheet.form.attach')}</label>
-            <input
-              type="file"
-              accept="application/pdf,image/*"
-              onChange={handleFileChange}
-              style={{ fontSize: 16 }}
-            />
+        <div className="list-group" style={{ marginTop: 12 }}>
+          <div className="form-row">
+            <label>{t('timesheet.form.notes')}</label>
+            <textarea value={tsNotes} onChange={(e) => setTsNotes(e.target.value)} rows={3} maxLength={1000} />
           </div>
-        )}
+          {editId && (
+            <div className="form-row">
+              <label>{t('timesheet.form.attach')}</label>
+              <input type="file" accept="application/pdf,image/*" onChange={handleFileChange} />
+            </div>
+          )}
+        </div>
 
         <button
           className="btn btn--primary"

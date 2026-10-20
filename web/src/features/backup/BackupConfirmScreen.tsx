@@ -32,14 +32,14 @@ export function BackupConfirmScreen() {
           <>
             <div style={{ fontSize: 48, marginBottom: 16 }}>&#10003;</div>
             <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 8 }}>{t('settings.backup.confirmEmail.title')}</h2>
-            <p style={{ color: 'var(--secondary-label)', fontSize: 14 }}>{t('settings.backup.confirmEmail.success')}</p>
+            <p style={{ color: 'var(--label2)', fontSize: 14 }}>{t('settings.backup.confirmEmail.success')}</p>
           </>
         )}
         {status === 'error' && (
           <>
             <div style={{ fontSize: 48, marginBottom: 16 }}>&#10007;</div>
             <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 8 }}>{t('common.error')}</h2>
-            <p style={{ color: 'var(--secondary-label)', fontSize: 14 }}>{t('settings.backup.confirmEmail.error')}</p>
+            <p style={{ color: 'var(--label2)', fontSize: 14 }}>{t('settings.backup.confirmEmail.error')}</p>
           </>
         )}
       </div>

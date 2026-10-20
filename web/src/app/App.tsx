@@ -80,17 +80,17 @@ function AppRouter() {
 
   // Authenticated routes — Invoices
   if (path === '/faturas/nova') return <InvoiceFormScreen />
-  if (path.startsWith('/faturas/editar/')) return <InvoiceFormScreen />
+  if (path.endsWith('/editar') && path.startsWith('/faturas/')) return <InvoiceFormScreen />
   if (path.startsWith('/faturas/')) return <InvoiceDetailScreen />
 
   // Timesheets
   if (path === '/timesheets/nova') return <TimesheetFormScreen />
-  if (path.startsWith('/timesheets/editar/')) return <TimesheetFormScreen />
+  if (path.endsWith('/editar') && path.startsWith('/timesheets/')) return <TimesheetFormScreen />
   if (path.startsWith('/timesheets/')) return <TimesheetDetailScreen />
 
   // Expenses
   if (path === '/despesas/nova') return <ExpenseFormScreen />
-  if (path.startsWith('/despesas/editar/')) return <ExpenseFormScreen />
+  if (path.endsWith('/editar') && path.startsWith('/despesas/')) return <ExpenseFormScreen />
   if (path.startsWith('/despesas/')) return <ExpenseDetailScreen />
 
   // Settings sub-screens

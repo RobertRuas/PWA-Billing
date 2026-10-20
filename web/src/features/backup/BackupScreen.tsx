@@ -327,7 +327,7 @@ export function BackupScreen() {
           onClick={() => { resetSendState(); setSendSheetOpen(true) }}
           disabled={verifiedDests.length === 0}
         >
-          <span style={{ color: verifiedDests.length > 0 ? 'var(--blue)' : 'var(--secondary-label)', fontSize: 14 }}>
+          <span style={{ color: verifiedDests.length > 0 ? 'var(--blue)' : 'var(--label2)', fontSize: 14 }}>
             {t('settings.backup.sendNow')}
           </span>
         </button>
@@ -452,7 +452,7 @@ export function BackupScreen() {
             </>
           ) : (
             <>
-              <p style={{ fontSize: 14, color: 'var(--secondary-label)', margin: '8px 0 16px' }}>
+              <p style={{ fontSize: 14, color: 'var(--label2)', margin: '8px 0 16px' }}>
                 {t('settings.backup.restoreSummary', {
                   invoices: String(restoreSummary.invoices),
                   attachments: String(restoreSummary.attachments),

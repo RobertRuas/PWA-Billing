@@ -22,7 +22,7 @@ export function TimesheetDetailScreen() {
   const route = useRoute()
   const [showActions, setShowActions] = useState(false)
 
-  const tsId = route.params?.id || ''
+  const tsId = route.path.match(/^\/timesheets\/([a-z0-9]+)/)?.[1] || ''
 
   const ts = useLiveQuery(() => (tsId ? db.mm_timesheets.get(tsId) : undefined), [tsId])
 
@@ -118,7 +118,7 @@ export function TimesheetDetailScreen() {
           </span>
         </div>
 
-        <div style={{ fontSize: 15, color: 'var(--color-secondary-label)', marginBottom: 16 }}>
+        <div style={{ fontSize: 15, color: 'var(--label2)', marginBottom: 16 }}>
           {formatPeriod(ts.week_start as string, ts.week_end as string, locale)}
         </div>
 
@@ -138,7 +138,7 @@ export function TimesheetDetailScreen() {
                     width: 32,
                     fontWeight: 600,
                     fontSize: 13,
-                    color: 'var(--color-secondary-label)',
+                    color: 'var(--label2)',
                   }}
                 >
                   {t(`day.${dayKeys[i]}`)}
@@ -148,7 +148,7 @@ export function TimesheetDetailScreen() {
                 </div>
                 <div style={{ flex: 1 }}>
                   {entry?.note && (
-                    <span style={{ fontSize: 13, color: 'var(--color-secondary-label)' }}>
+                    <span style={{ fontSize: 13, color: 'var(--label2)' }}>
                       {entry.note}
                     </span>
                   )}
@@ -162,7 +162,7 @@ export function TimesheetDetailScreen() {
                       width: 8,
                       height: 8,
                       borderRadius: 4,
-                      background: 'var(--color-green)',
+                      background: 'var(--green)',
                       flexShrink: 0,
                     }}
                     title={t('timesheets.invoiced')}
@@ -190,7 +190,7 @@ export function TimesheetDetailScreen() {
           <div
             style={{
               padding: '12px',
-              background: 'var(--color-fill-tertiary)',
+              background: 'var(--fill)',
               borderRadius: 10,
               marginBottom: 16,
               fontSize: 15,

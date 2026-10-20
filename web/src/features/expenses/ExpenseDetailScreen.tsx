@@ -17,7 +17,7 @@ export function ExpenseDetailScreen() {
   const route = useRoute()
   const [showActions, setShowActions] = useState(false)
 
-  const expId = route.params?.id || ''
+  const expId = route.path.match(/^\/despesas\/([a-z0-9]+)/)?.[1] || ''
 
   const entry = useLiveQuery(() => (expId ? db.mm_perdiem_entries.get(expId) : undefined), [expId])
 
@@ -78,7 +78,7 @@ export function ExpenseDetailScreen() {
           )}
         </div>
 
-        <div style={{ fontSize: 15, color: 'var(--color-secondary-label)', marginBottom: 16 }}>
+        <div style={{ fontSize: 15, color: 'var(--label2)', marginBottom: 16 }}>
           {entry.date as string}
           {project && ` · ${project.name as string}`}
         </div>
@@ -87,7 +87,7 @@ export function ExpenseDetailScreen() {
           <div
             style={{
               padding: '12px',
-              background: 'var(--color-fill-tertiary)',
+              background: 'var(--fill)',
               borderRadius: 10,
               marginBottom: 12,
               fontSize: 15,

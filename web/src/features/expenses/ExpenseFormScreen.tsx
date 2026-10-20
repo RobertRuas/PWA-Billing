@@ -18,7 +18,7 @@ export function ExpenseFormScreen() {
   const nav = useNav()
   const route = useRoute()
 
-  const editId = route.params?.id
+  const editId = route.path.match(/^\/despesas\/([a-z0-9]+)\/editar$/)?.[1]
 
   const profile = useLiveQuery(
     () => (user ? db.mm_profiles.where('owner').equals(user.id).first() : undefined),
@@ -144,117 +144,70 @@ export function ExpenseFormScreen() {
         }
       />
 
-      <div style={{ padding: '0 16px' }}>
+      <div className="list-group" style={{ marginTop: 12 }}>
         <div className="form-row">
-          <label className="form-row-label">{t('expense.form.project')}</label>
-          <select
-            value={projectId}
-            onChange={(e) => setProjectId(e.target.value)}
-            className="form-row-input"
-            disabled={!!editId}
-          >
+          <label>{t('expense.form.project')}</label>
+          <select value={projectId} onChange={(e) => setProjectId(e.target.value)} disabled={!!editId}>
             <option value="">—</option>
             {(projects ?? []).map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name as string}
-              </option>
+              <option key={p.id} value={p.id}>{p.name as string}</option>
             ))}
           </select>
         </div>
-
         <div className="form-row">
-          <label className="form-row-label">{t('expense.form.kind')}</label>
-          <div className="segmented" style={{ marginTop: 4 }}>
-            {EXPENSE_KINDS.map((k) => (
-              <button
-                key={k}
-                className={`segmented-btn ${kind === k ? 'segmented-btn--active' : ''}`}
-                onClick={() => setKind(k)}
-                style={{ fontSize: 12, padding: '4px 6px' }}
-              >
-                {t(`expense.kind.${k}`)}
-              </button>
-            ))}
-          </div>
+          <label>{t('expense.form.date')}</label>
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
-
         <div className="form-row">
-          <label className="form-row-label">{t('expense.form.date')}</label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="form-row-input"
-            style={{ fontSize: 16 }}
-          />
-        </div>
-
-        <div className="form-row">
-          <label className="form-row-label">{t('expense.form.description')}</label>
+          <label>{t('expense.form.description')}</label>
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="form-row-input"
             maxLength={300}
             placeholder={t(`expense.kind.${kind as 'perdiem'}`)}
-            style={{ fontSize: 16 }}
           />
         </div>
-
-        <div style={{ display: 'flex', gap: 12 }}>
-          <div className="form-row" style={{ flex: 1 }}>
-            <label className="form-row-label">{t('expense.form.quantity')}</label>
-            <input
-              type="text"
-              inputMode="decimal"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              className="form-row-input"
-              style={{ fontSize: 16 }}
-            />
-          </div>
-          <div className="form-row" style={{ flex: 1 }}>
-            <label className="form-row-label">{t('expense.form.rate')}</label>
-            <input
-              type="text"
-              inputMode="decimal"
-              value={rateCents}
-              onChange={(e) => setRateCents(e.target.value)}
-              className="form-row-input"
-              placeholder="0.00"
-              style={{ fontSize: 16 }}
-            />
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '12px 0',
-            fontWeight: 700,
-            fontSize: 17,
-            borderTop: '1px solid var(--color-separator)',
-            marginTop: 8,
-          }}
-        >
-          <span>{t('expense.form.amount')}</span>
-          <span>{formatMoney(amountCents, currency, locale)}</span>
-        </div>
-
-        <div className="form-row" style={{ marginBottom: 12 }}>
-          <label className="form-row-label">{t('expense.form.receipt')}</label>
-          <input
-            type="file"
-            accept="application/pdf,image/*"
-            onChange={(e) => setReceiptFile(e.target.files?.[0] ?? null)}
-            style={{ fontSize: 16 }}
-          />
-        </div>
-
-        <div style={{ height: 48 }} />
       </div>
+
+      <div style={{ padding: '12px 16px 0' }}>
+        <div className="segmented">
+          {EXPENSE_KINDS.map((k) => (
+            <button
+              key={k}
+              className={`segmented-btn ${kind === k ? 'segmented-btn--active' : ''}`}
+              onClick={() => setKind(k)}
+            >
+              {t(`expense.kind.${k}`)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="list-group" style={{ marginTop: 12 }}>
+        <div className="form-row">
+          <label>{t('expense.form.quantity')}</label>
+          <input type="text" inputMode="decimal" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+        </div>
+        <div className="form-row">
+          <label>{t('expense.form.rate')}</label>
+          <input type="text" inputMode="decimal" value={rateCents} onChange={(e) => setRateCents(e.target.value)} placeholder="0.00" />
+        </div>
+      </div>
+
+      <div className="list-group" style={{ marginTop: 12, padding: '12px 16px', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontWeight: 700, fontSize: 15 }}>{t('expense.form.amount')}</span>
+        <span style={{ fontWeight: 700, fontSize: 17 }}>{formatMoney(amountCents, currency, locale)}</span>
+      </div>
+
+      <div className="list-group" style={{ marginTop: 12 }}>
+        <div className="form-row">
+          <label>{t('expense.form.receipt')}</label>
+          <input type="file" accept="application/pdf,image/*" onChange={(e) => setReceiptFile(e.target.files?.[0] ?? null)} />
+        </div>
+      </div>
+
+      <div style={{ height: 48 }} />
     </div>
   )
 }
