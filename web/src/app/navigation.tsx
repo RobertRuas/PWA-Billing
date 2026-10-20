@@ -1,4 +1,10 @@
-import { createContext, useContext, useCallback, useState, useRef, type ReactNode } from 'react'
+import { createContext, useContext, useCallback, useState, useRef, useEffect, type ReactNode } from 'react'
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+function toUrl(path: string) {
+  return BASE + path
+}
 
 interface Route {
   path: string
@@ -36,9 +42,17 @@ export function StackNavigator({ children }: StackNavProps) {
   const touchCurrentX = useRef(0)
   const swiping = useRef(false)
 
+  useEffect(() => {
+    function onPopState() {
+      setStack((s) => (s.length > 1 ? s.slice(0, -1) : s))
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+
   const push = useCallback((path: string, params?: Record<string, string>) => {
     setStack((s) => [...s, { path, params }])
-    history.pushState(null, '', path)
+    history.pushState(null, '', toUrl(path))
   }, [])
 
   const pop = useCallback(() => {
@@ -53,14 +67,14 @@ export function StackNavigator({ children }: StackNavProps) {
     setStack((s) => {
       const next = [...s]
       next[next.length - 1] = { path, params }
-      history.replaceState(null, '', path)
+      history.replaceState(null, '', toUrl(path))
       return next
     })
   }, [])
 
   const reset = useCallback((path: string) => {
     setStack([{ path }])
-    history.replaceState(null, '', path)
+    history.replaceState(null, '', toUrl(path))
   }, [])
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
