@@ -69,7 +69,7 @@ export function ResetPasswordConfirmScreen() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (password.length < 10) { setError(t('error.passwordMin', { min: 10 })); return }
+    if (password.length < 6) { setError(t('error.passwordMin', { min: 6 })); return }
     if (password !== passwordConfirm) { setError(t('error.passwordMatch')); return }
 
     const token = new URLSearchParams(window.location.search).get('token')

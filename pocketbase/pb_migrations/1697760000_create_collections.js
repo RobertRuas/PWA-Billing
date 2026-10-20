@@ -15,8 +15,9 @@ migrate(
         { name: "name", type: "text", required: true, min: 1, max: 120 },
         { name: "language", type: "select", values: ["auto", "pt-BR", "en"], maxSelect: 1 },
         { name: "theme", type: "select", values: ["auto", "light", "dark"], maxSelect: 1 },
+        { name: "password", type: "password", required: true, system: true, hidden: true, min: 6, max: 0, cost: 0 },
       ],
-      passwordAuth: { enabled: true, minPasswordLength: 10 },
+      passwordAuth: { enabled: true },
       emailAuth: { enabled: true },
       authRule: "verified = true",
       authToken: { duration: 604800 }, // 7 days
@@ -55,8 +56,6 @@ migrate(
         { name: "bank_iban_name", type: "text", max: 120 },
         { name: "bank_iban", type: "text", max: 40 },
         { name: "bank_swift", type: "text", max: 11 },
-        { name: "default_client", type: "relation", collectionId: "", maxSelect: 1 }, // will be set after mm_clients is created
-        { name: "default_project", type: "relation", collectionId: "", maxSelect: 1 }, // will be set after mm_projects is created
         { name: "backup_schedule", type: "select", values: ["off", "weekly", "monthly"], maxSelect: 1 },
         { name: "backup_include_attachments", type: "bool" },
         { name: "backup_last_at", type: "date" },
@@ -86,7 +85,7 @@ migrate(
         { name: "notes", type: "text", max: 1000 },
         { name: "archived", type: "bool" },
       ],
-      indexes: ["CREATE INDEX idx_mm_clients_owner_updated ON mm_clients (owner, updated)"],
+      indexes: ["CREATE INDEX idx_mm_clients_owner ON mm_clients (owner)"],
     })
     app.save(clients)
 
@@ -114,17 +113,17 @@ migrate(
         { name: "currency", type: "select", values: ["EUR", "USD", "GBP", "CHF", "BRL"], maxSelect: 1 },
         { name: "archived", type: "bool" },
       ],
-      indexes: ["CREATE INDEX idx_mm_projects_owner_updated ON mm_projects (owner, updated)"],
+      indexes: ["CREATE INDEX idx_mm_projects_owner ON mm_projects (owner)"],
     })
     app.save(projects)
 
-    // Update profile relations now that clients and projects exist
-    const profileFields = profiles.fields
-    for (const f of profileFields) {
-      if (f.name === "default_client") f.collectionId = clients.id
-      if (f.name === "default_project") f.collectionId = projects.id
-    }
-    app.save(profiles)
+    // Add relation fields now that clients and projects exist
+    const p2 = app.findCollectionByNameOrId("mm_profiles")
+    const dcField = new RelationField({ name: "default_client", collectionId: clients.id, maxSelect: 1 })
+    const dpField = new RelationField({ name: "default_project", collectionId: projects.id, maxSelect: 1 })
+    p2.fields.add(dcField)
+    p2.fields.add(dpField)
+    app.save(p2)
 
     // mm_invoices
     const invoices = new Collection({
@@ -194,7 +193,7 @@ migrate(
       ],
       indexes: [
         "CREATE UNIQUE INDEX idx_mm_timesheets_unique ON mm_timesheets (owner, project, week_start) WHERE deleted_at = ''",
-        "CREATE INDEX idx_mm_timesheets_owner_updated ON mm_timesheets (owner, updated)",
+        "CREATE INDEX idx_mm_timesheets_owner ON mm_timesheets (owner)",
       ],
     })
     app.save(timesheets)
@@ -220,7 +219,7 @@ migrate(
       ],
       indexes: [
         "CREATE UNIQUE INDEX idx_mm_ts_entries_unique ON mm_timesheet_entries (timesheet, date) WHERE deleted_at = ''",
-        "CREATE INDEX idx_mm_ts_entries_owner_updated ON mm_timesheet_entries (owner, updated)",
+        "CREATE INDEX idx_mm_ts_entries_owner ON mm_timesheet_entries (owner)",
       ],
     })
     app.save(tsEntries)
@@ -248,7 +247,7 @@ migrate(
         { name: "receipt", type: "file", maxSize: 10485760, mimeTypes: ["application/pdf", "image/jpeg", "image/png"], protected: true },
         { name: "invoice", type: "relation", collectionId: invoices.id, maxSelect: 1 },
       ],
-      indexes: ["CREATE INDEX idx_mm_pd_entries_owner_updated ON mm_perdiem_entries (owner, updated)"],
+      indexes: ["CREATE INDEX idx_mm_pd_entries_owner ON mm_perdiem_entries (owner)"],
     })
     app.save(pdEntries)
 
@@ -275,7 +274,7 @@ migrate(
         { name: "date_from", type: "date" },
         { name: "date_to", type: "date" },
       ],
-      indexes: ["CREATE INDEX idx_mm_inv_items_owner_updated ON mm_invoice_items (owner, updated)"],
+      indexes: ["CREATE INDEX idx_mm_inv_items_owner ON mm_invoice_items (owner)"],
     })
     app.save(invoiceItems)
 
@@ -319,7 +318,7 @@ migrate(
         { name: "size_bytes", type: "number", min: 0 },
         { name: "sha256", type: "text", max: 64 },
       ],
-      indexes: ["CREATE INDEX idx_mm_attachments_owner_updated ON mm_attachments (owner, updated)"],
+      indexes: ["CREATE INDEX idx_mm_attachments_owner ON mm_attachments (owner)"],
     })
     app.save(attachments)
 

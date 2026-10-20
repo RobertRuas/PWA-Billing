@@ -38,8 +38,8 @@ export function RegisterScreen() {
     e.preventDefault()
     setError('')
 
-    if (password.length < 10) {
-      setError(t('error.passwordMin', { min: 10 }))
+    if (password.length < 6) {
+      setError(t('error.passwordMin', { min: 6 }))
       return
     }
     if (password !== passwordConfirm) {

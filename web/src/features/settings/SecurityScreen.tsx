@@ -25,8 +25,8 @@ export function SecurityScreen() {
 
   async function handleChangePassword() {
     setPwError('')
-    if (newPw.length < 10) {
-      setPwError(t('error.passwordMin', { min: 10 }))
+    if (newPw.length < 6) {
+      setPwError(t('error.passwordMin', { min: 6 }))
       return
     }
     if (newPw !== confirmPw) {
